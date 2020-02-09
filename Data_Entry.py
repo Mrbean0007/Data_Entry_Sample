@@ -117,6 +117,7 @@ class Ui_Dialog(object):
         self.lineEdit_2.clear()
         self.lineEdit_3.clear()
 
+
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
