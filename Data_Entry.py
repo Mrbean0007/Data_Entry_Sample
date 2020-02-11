@@ -91,28 +91,36 @@ class Ui_Dialog(object):
 
         df =pd.DataFrame([data],columns=Entry)
         #print(df.columns)
-        if "@" and ".com" or ".in" in self.email:
-            if os.path.isfile("Data_Entry_V1.csv"):
-                df1=pd.read_csv("Data_Entry_V1.csv")
-                print(df1,"read")
-                #print(df1.columns)
-                print(self.email.find("@"))
+        if "1234567890" in self.name:
+            if "@"  in self.email and (".com" or ".in") in self.email:
+                if os.path.isfile("Data_Entry_V1.csv"):
+                    df1=pd.read_csv("Data_Entry_V1.csv")
+                    print(df1,"read")
+                    #print(df1.columns)
+                    print(self.email.find("@"))
 
-                f= pd.concat((df1,df))
-               # print("f:",f0)
-               # concat=df1.append(df)
-                f.to_csv("Data_Entry_V1.csv",columns=Entry,index=False)
+                    f= pd.concat((df1,df))
+                   # print("f:",f0)
+                   # concat=df1.append(df)
+                    f.to_csv("Data_Entry_V1.csv",columns=Entry,index=False)
 
 
+                else:
+                    df.to_csv("Data_Entry_V1.csv")
             else:
-                df.to_csv("Data_Entry_V1.csv")
+                print("No @")
+                self.buttonReply=QMessageBox()
+                self.buttonReply.setIcon(QMessageBox.Information)
+                self.buttonReply.setText(f'Enter Email ID {self.email} is Invalid ')
+                self.buttonReply.setStandardButtons(QMessageBox.Ok)
+                self.buttonReply.exec_()
         else:
-            print("No @")
             self.buttonReply=QMessageBox()
             self.buttonReply.setIcon(QMessageBox.Information)
-            self.buttonReply.setText(f'Enter Email ID {self.email} is Invalid')
+            self.buttonReply.setText(f"Enter Name ID {self.name} is Invalid ")
             self.buttonReply.setStandardButtons(QMessageBox.Ok)
             self.buttonReply.exec_()
+
         self.lineEdit.clear()
         self.lineEdit_2.clear()
         self.lineEdit_3.clear()
